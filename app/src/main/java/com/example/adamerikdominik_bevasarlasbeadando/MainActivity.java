@@ -111,6 +111,10 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<Termekek> call, Response<Termekek> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(MainActivity.this, "Sikeres hozzáadás!", Toast.LENGTH_SHORT).show();
+                    edittextName.setText("");
+                    edittextOnePrice.setText("");
+                    editTextCount.setText("");
+                    editTextMertek.setText("");
                 } else {
                     Toast.makeText(MainActivity.this, "Nem sikerült hozzáadni a terméket!", Toast.LENGTH_SHORT).show();
                 }
