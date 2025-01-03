@@ -100,12 +100,26 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "A mértékegység mező nem lehet üres!", Toast.LENGTH_SHORT).show();
             return;
         }
-        apiService.createTermekek(new Termekek(
+        Termekek newTermek = new Termekek(
                 name,
                 Integer.parseInt(onePrice),
                 Float.parseFloat(count),
                 mertek
-        ));
-        Toast.makeText(this, "Sikeres hozzáadás!", Toast.LENGTH_SHORT).show();
-    };
+        );
+        apiService.createTermekek(newTermek).enqueue(new Callback<Termekek>() {
+            @Override
+            public void onResponse(Call<Termekek> call, Response<Termekek> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(MainActivity.this, "Sikeres hozzáadás!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Nem sikerült hozzáadni a terméket!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Termekek> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Hiba történt a termék hozzáadása közben!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.adamerikdominik_bevasarlasbeadando;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -36,6 +37,7 @@ public class TermekekAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
+        view = LayoutInflater.from(context).inflate(R.layout.termeklist, viewGroup, false);
         TextView nameTextWiew = view.findViewById(R.id.NameTextView);
         TextView countTextView = view.findViewById(R.id.countTextView);
         TextView priceTextView = view.findViewById(R.id.priceTextView);
@@ -43,9 +45,10 @@ public class TermekekAdapter extends BaseAdapter {
         TextView bruttonPriceTextView = view.findViewById(R.id.bruttonPriceTextView);
         Termekek termekek = termekekList.get(i);
         nameTextWiew.setText(termekek.getName());
-        priceTextView.setText(termekek.getPrice());
-        countTextView.setText(termekek.getCount()+ " " +termekek.getMertekegyseg());
-        bruttonPriceTextView.setText(termekek.getBruttoPrice()+ "Ft");
+        priceTextView.setText(String.valueOf(termekek.getPrice()));  // Átalakítás String típusra
+        countTextView.setText(String.format("%s %s", termekek.getCount(), termekek.getMertekegyseg()));
+        bruttonPriceTextView.setText(String.format("%s Ft", termekek.getBruttoPrice()));
+
 
         return view;
     }

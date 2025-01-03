@@ -5,16 +5,19 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListActivity">
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/termekekListView"/>
+    tools:context=".ListActivity"
+
+    >
     <Button
         android:layout_width="match_parent"
-        android:id="@+id/visszaButton"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/termekekListView"
+        android:id="@+id/visszaButton"
         android:text="Vissza"/>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/visszaButton"
+        android:id="@+id/termekekListView"/>
+
 
 </RelativeLayout>
