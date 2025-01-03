@@ -3,6 +3,7 @@ package com.example.adamerikdominik_bevasarlasbeadando;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -48,6 +49,18 @@ public class ListActivity extends AppCompatActivity {
         termekekListView.setAdapter(termekekAdapter);
         RetrofitApiService apiService = RetrofitClient.getInstance().create(RetrofitApiService.class);
         loadTermekek(apiService);
+
+        termekekListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Termekek clickedTermek = termekekList.get(position);
+                Intent intent = new Intent(ListActivity.this, TermekActivity.class);
+                intent.putExtra("termekid", clickedTermek.getId());
+                startActivity(intent);
+                finish();
+
+            }
+        });
         visszaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
